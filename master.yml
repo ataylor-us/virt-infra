@@ -31,3 +31,5 @@
     #   - reverse_proxy
     - drift_management
     - mrlesmithjr.netplan
+    - role: virtualization
+      tags: libvirt,libvirtd

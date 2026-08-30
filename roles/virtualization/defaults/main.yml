@@ -1,0 +1,9 @@
+---
+packages:
+  - libvirt-daemon-system
+  - qemu-system-x86
+  # required by libvirt ansible collection
+  - python3-libvirt
+  - python3-lxml
+enabled_services:
+  - libvirtd.service
