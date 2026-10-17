@@ -1,4 +1,12 @@
 ---
+autofs_mounts:
+  - name: borg
+    fstype: nfs
+    remote: "unas2.internal:/var/nfs/shared/virt_borg"
+    options: nfsvers=3,rw,hard,noatime,nodiratime
+local_borg_repo: /misc/borg
+borg_passphrase: "{{ lookup('community.general.passwordstore', 'Repositories/virt-infra/borg_passphrase') }}"
+remote_borg_repo_path: "{{ lookup('community.general.passwordstore', 'Repositories/virt-infra/remote_borg_repo_path') }}"
 domain_name: virt.internal
 bridge_interface: enp86s0
 bridge_name: br0

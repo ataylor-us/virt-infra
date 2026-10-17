@@ -19,7 +19,7 @@
         - "'pi' not in group_names"
         - "'pis' not in group_names"
     - editor
-    #   - mounts
+    - mounts
     - backups
     #   - containers
     - terminal
