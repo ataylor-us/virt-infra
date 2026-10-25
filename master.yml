@@ -33,3 +33,13 @@
     - mrlesmithjr.netplan
     - role: virtualization
       tags: libvirt,libvirtd
+  tasks:
+    # The default didn't fill the disk, this fixes it
+    - name: Extend logical volumes to fill volume group
+      become: true
+      community.general.lvol:
+        vg: ubuntu-vg
+        lv: ubuntu-lv
+        size: 100%VG
+        shrink: false
+        resizefs: true
