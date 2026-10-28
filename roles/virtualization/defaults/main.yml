@@ -7,3 +7,6 @@ packages:
   - python3-lxml
 enabled_services:
   - libvirtd.service
+storage_pools:
+  - name: default
+    path: /var/lib/libvirt/images

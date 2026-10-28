@@ -1,0 +1,13 @@
+<pool type="{{ item.type | default('dir') }}">
+  <name>{{ item.name }}</name>
+{% if item.source is defined %}
+  <source>
+    <host name="{{ item.source.host }}"/>
+    <dir path="{{ item.source.dir }}"/>
+    <format type="nfs"/>
+  </source>
+{% endif %}
+  <target>
+    <path>{{ item.path }}</path>
+  </target>
+</pool>

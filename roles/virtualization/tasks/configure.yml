@@ -5,3 +5,31 @@
     name: "{{ ansible_user }}"
     groups: libvirt
     append: true
+- name: Define storage pools
+  become: true
+  community.libvirt.virt_pool:
+    command: define
+    name: "{{ item.name }}"
+    xml: '{{ lookup("template", "pool.xml.j2") }}'
+  loop: "{{ storage_pools }}"
+- name: Create storage pool directories
+  become: true
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0711"
+  loop: "{{ storage_pools }}"
+- name: Start storage pools
+  become: true
+  community.libvirt.virt_pool:
+    state: active
+    name: "{{ item.name }}"
+  loop: "{{ storage_pools }}"
+- name: Autostart storage pools
+  become: true
+  community.libvirt.virt_pool:
+    autostart: true
+    name: "{{ item.name }}"
+  loop: "{{ storage_pools }}"
