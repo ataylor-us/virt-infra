@@ -1,10 +1,9 @@
-# Base Debian playbook
 
-Base playbook to set up a Debian box
+# Frontend playbook
 
-Tested with Trixie, working on Ubuntu 26 support.
+Templated from [arch-base-infra](https://github.com/ataylor-us/arch-base-infra).
 
-## Running
+This box is the hypervisor for my homelab, currently it runs Ubuntu 26 with opentofu/libvirt provisioning the VMs.
 
 ```bash
 ssh-copy-id `#ip`
