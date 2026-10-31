@@ -5,6 +5,7 @@ packages:
   # required by libvirt ansible collection
   - python3-libvirt
   - python3-lxml
+  - libguestfs-tools
 enabled_services:
   - libvirtd.service
 storage_pools:
