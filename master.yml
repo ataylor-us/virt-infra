@@ -43,3 +43,21 @@
         size: 100%VG
         shrink: false
         resizefs: true
+    # This machine is pretty quiet, but just to prevent any fan spikes
+    - name: Disable turbo and prefer low power
+      become: true
+      ansible.builtin.copy:
+        content: |
+          w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1
+          w /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference - - - - power
+        dest: /etc/tmpfiles.d/quiet-cpu.conf
+        group: root
+        mode: "0644"
+        owner: root
+      notify: Apply tmpfiles
+  handlers:
+    - name: Apply tmpfiles
+      become: true
+      ansible.builtin.command:
+        cmd: systemd-tmpfiles --create /etc/tmpfiles.d/quiet-cpu.conf
+      changed_when: true
