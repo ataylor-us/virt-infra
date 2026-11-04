@@ -11,7 +11,7 @@ domain_name: virt.internal
 bridge_interface: enp86s0
 bridge_name: br0
 bridge_mac_address: "{{ lookup('community.general.passwordstore', 'Repositories/virt-infra/virt_br0_mac_address') }}"
-vlan_bridges: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+vlan_bridges: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 netplan_config_file: /etc/netplan/60-bridges.yaml
 netplan_renderer: networkd
 netplan_configuration_raw: |
