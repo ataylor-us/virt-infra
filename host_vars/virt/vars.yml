@@ -43,3 +43,4 @@ netplan_configuration_raw: |
         link: {{ bridge_interface }}
   {% endfor %}
 netplan_configuration: "{{ netplan_configuration_raw | from_yaml }}"
+use_docker: true
