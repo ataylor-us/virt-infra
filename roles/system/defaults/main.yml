@@ -13,3 +13,4 @@ enabled_services:
   - ssh
   - fail2ban
   - cron
+  - fstrim.timer
