@@ -28,3 +28,23 @@
     group: "{{ group }}"
     mode: "0644"
     owner: "{{ username }}"
+- name: Set global EDITOR
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    regexp: "^EDITOR="
+    line: "EDITOR=nvim"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+- name: Set global VISUAL
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    regexp: "^VISUAL="
+    line: "VISUAL=nvim"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
