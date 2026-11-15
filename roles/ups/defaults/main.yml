@@ -1,0 +1,5 @@
+---
+packages:
+  - nut-client
+enabled_services:
+  - nut-monitor
