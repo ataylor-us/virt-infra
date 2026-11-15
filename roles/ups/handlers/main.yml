@@ -4,3 +4,9 @@
   ansible.builtin.systemd:
     name: nut-monitor
     state: restarted
+  register: nut_restart
+# There's some order issue with deploying the config file and hitting systemd's 10s start limit
+# This is untested, but should fix it
+  until: nut_restart is success
+  retries: 5
+  delay: 5
