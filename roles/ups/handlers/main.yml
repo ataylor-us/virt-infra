@@ -6,7 +6,7 @@
     state: restarted
   register: nut_restart
 # There's some order issue with deploying the config file and hitting systemd's 10s start limit
-# This is untested, but should fix it
+# This restarts until it correct loads, tested
   until: nut_restart is success
   retries: 5
   delay: 5
