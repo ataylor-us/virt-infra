@@ -10,3 +10,6 @@ check: install
 
 unlock:
     -ssh -o UserKnownHostsFile=~/.ssh/known_hosts_luks root@virt-enp86s0.internal
+
+unlock2:
+    -ssh -o UserKnownHostsFile=~/.ssh/known_hosts_luks root@virt2-eno1.internal
