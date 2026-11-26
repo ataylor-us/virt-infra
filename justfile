@@ -13,3 +13,6 @@ unlock:
 
 unlock2:
     -ssh -o UserKnownHostsFile=~/.ssh/known_hosts_luks root@virt2-eno1.internal
+
+unlock3:
+    -ssh -o UserKnownHostsFile=~/.ssh/known_hosts_luks root@virt3-enp86s0.internal

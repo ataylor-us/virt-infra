@@ -1,0 +1,44 @@
+---
+autofs_mounts:
+  - name: borg
+    fstype: nfs
+    remote: "unas2.internal:/var/nfs/shared/virt3_borg"
+    options: nfsvers=3,rw,hard,noatime,nodiratime
+local_borg_repo: /misc/borg
+borg_passphrase: "{{ lookup('community.general.passwordstore', 'Repositories/virt-infra/virt3_borg_passphrase', create=true, length=32, nosymbols=true) }}"
+domain_name: virt3.internal
+bridge_interface: enp86s0
+bridge_name: br0
+bridge_mac_address: "{{ lookup('community.general.passwordstore', 'Repositories/virt-infra/virt3_br0_mac_address') }}"
+vlan_bridges: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+netplan_config_file: /etc/netplan/60-bridges.yaml
+netplan_renderer: networkd
+netplan_configuration_raw: |
+  network:
+    ethernets:
+      {{ bridge_interface }}:
+        dhcp4: false
+        dhcp6: false
+        link-local: []
+        optional: true
+    bridges:
+      {{ bridge_name }}:
+        interfaces: [{{ bridge_interface }}]
+        macaddress: "{{ bridge_mac_address }}"
+        dhcp4: true
+        dhcp6: false
+  {% for id in vlan_bridges %}
+      br{{ id }}:
+        interfaces: [{{ bridge_interface }}.{{ id }}]
+        dhcp4: false
+        dhcp6: false
+        link-local: []
+        optional: true
+  {% endfor %}
+    vlans:
+  {% for id in vlan_bridges %}
+      {{ bridge_interface }}.{{ id }}:
+        id: {{ id }}
+        link: {{ bridge_interface }}
+  {% endfor %}
+netplan_configuration: "{{ netplan_configuration_raw | from_yaml }}"
