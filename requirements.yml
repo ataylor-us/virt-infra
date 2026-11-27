@@ -13,10 +13,8 @@ collections:
   - name: containers.podman
     version: "1.21.2"
   - name: hifis.toolkit
-    version: "7.0.1"
+    version: "7.1.0"
   - name: ansible.posix
     version: "2.2.2"
   - name: community.libvirt
     version: "2.4.0"
-  - name: community.docker
-    version: "5.4.0"
